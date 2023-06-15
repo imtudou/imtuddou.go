@@ -1,0 +1,2 @@
+# imtuddou.go
+go study
