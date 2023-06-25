@@ -1,6 +1,9 @@
 # imtuddou.go
 go study
 
+#  官方文档 http://doc.golang.ltd/
+
+
 # chapter3 Golang 变量
 #### 为什么需要变量
 #### 变量的介绍
