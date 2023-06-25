@@ -30,9 +30,5 @@ func main() {
 	var res4 int64 = 11
 	res4,_ = strconv.ParseInt(str4,10,64)
 	fmt.Printf("type=%T res3=%v \n",res4,res4) // output:type=int64 res3=0
-
-
-
-
 	 
 }
