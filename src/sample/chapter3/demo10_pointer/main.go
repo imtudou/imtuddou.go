@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"D:/software/go/src/src/sample/chapter3/model/model"
+	"src/sample/chapter3/model"
 )
 
 // go 指针的使用
