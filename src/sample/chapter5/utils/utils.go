@@ -26,3 +26,5 @@ func Cal(n1 float64, n2 float64, operator byte) float64 {
 func Now() time.Time {
 	return time.Now()
 }
+
+var HeroName string = "吕布"
