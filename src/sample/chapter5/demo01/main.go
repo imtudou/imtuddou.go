@@ -24,8 +24,6 @@ func main() {
 
 	test(10)
 
-	fibonacci(3, 5)
-
 }
 
 func getSum(n1 int, n2 int) int {
@@ -46,17 +44,4 @@ func test(n int) {
 	} else {
 		fmt.Println(n)
 	}
-}
-
-func fibonacci(s int, e int) {
-
-	var sum int
-	fmt.Println(s)
-	fmt.Println(e)
-	if sum <= 100 {
-		sum = s + e
-		fmt.Println(sum)
-		fibonacci(e, sum)
-	}
-
 }
