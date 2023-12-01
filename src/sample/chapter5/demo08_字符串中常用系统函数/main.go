@@ -64,4 +64,12 @@ func main() {
 	//15)将字符串的字母进行大小写的转换: strings.ToLower(Go") // go strings.ToUpper("Go") // Go
 	fmt.Println(strings.ToLower("strings.ToLower"))
 	fmt.Println(strings.ToUpper("strings.ToUpper"))
+
+	// 16) 将字符串左右两边的空格去掉： strings.TrimSpace(" tn a lone gopher ntmI
+	fmt.Println(strings.TrimSpace(" tn a lone gopher ntmI "))
+	//17) 将字符串左右两边指定的字符去掉：strings.Trim("! hello!"."！")/["hello"]//将左右两边 ！和""去掉
+	//18)将字符串左边指定的字符去掉: strings.TrimLeft("! hello! ", "!") // ["hello"] //将左边!和 ""去掉
+	//19) 将字符串右边指定的字符去掉 ：strings.TrimRight("! hello!"，"！")/["hello"]//将右边 ！和""去掉
+	//20) 判断字符串是否以指定的字符串开头: strings.HasPrefix("ftp://192.168.10.1","ftp") // true
+	//21)判断字符串是否以指定的字符串结束: strings.HasSuffixI"NLT_abc.jpg", "abc") //false
 }

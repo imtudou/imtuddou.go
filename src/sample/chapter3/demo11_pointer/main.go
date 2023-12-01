@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"src/sample/chapter3/model"
 )
 
 // go 指针的使用
@@ -22,5 +21,4 @@ func main() {
 	var int int = 111
 	fmt.Println("\n int = ", int)
 
-	fmt.Println(model.HeroName)
 }
