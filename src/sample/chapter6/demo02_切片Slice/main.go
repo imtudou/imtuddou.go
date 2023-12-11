@@ -16,19 +16,52 @@ import "fmt"
 func main() {
 
 	// 演示切片基本使用
-	var intArr [5]int = [...]int{11, 223, 543, 233}
-	//申明/定义一个切片
+	// 创建切片的三种各种方式
+	//方式1.
+	var arr [5]int = [...]int{1, 2, 3, 4, 5}
+	var slice1 = arr[1:3] //取arr[1]~arr[3]的元素,不包含arr[3]：[2 3]
+	fmt.Println("arr=", arr)
+	fmt.Println("slice1=", slice1)
+	fmt.Println("slice1 len=", len(slice1))
+	fmt.Println("slice1 cap=", cap(slice1))
+	fmt.Println("=====================================")
+	//方式2. make(type, 0)
+	var slice2 []int = make([]int, 4)
+	slice2[0] = 100
+	slice2[1] = 200
+	fmt.Println("slice2=", slice2)
+	fmt.Println("slice2 len=", len(slice2))
+	fmt.Println("slice2 cap=", cap(slice2))
+	fmt.Println("=====================================")
+	// 方式3: 定义一个切片，直接指定具体数组，使用原理类似male方式
+	var strSlice []string = []string{"tome", "jake", "mary"}
+	fmt.Println("strSlice=", strSlice)
+	fmt.Println("strSlice len=", len(slice2))
+	fmt.Println("strSlice cap=", cap(strSlice))
+	fmt.Println("=====================================")
 
-	// 创建切片的各种方式
-	//1.
-	s1 := []int{1, 2, 3}
+	//切片遍历的两种方式
+	for i := 0; i < len(slice1); i++ {
+		fmt.Printf("slice1[%v]=%v \n", i, slice1[i])
+	}
+	fmt.Println()
+	for i, v := range slice1 {
+		fmt.Printf("i=%v,v=%v ", i, v)
+	}
+	fmt.Println("=====================================")
 
-	//2. make(type, 0)
-	s2 := make([]int, 0)
-	fmt.Println(s1, s2)
+	//用append内置函数，可以对切片进行动态追加
+	var slice3 []int = []int{11, 22, 33}
+	slice3 = append(slice3, 44, 55, 66)
+	fmt.Println("slice3=", slice3)
+	slice3 = append(slice3, slice3...)
+	fmt.Println("slice3=", slice3)
 
-	// 从数组切片
-	arr := [...]int{2, 3, 4, 5, 6}
-	fmt.Println(arr)
-
+	fmt.Println("=====================================")
+	//切片拷贝操作
+	var slice4 []int = []int{11, 22, 33}
+	var slice5 = make([]int, 5)
+	copy(slice5, slice4)
+	fmt.Println("slice4=", slice4)
+	fmt.Println("slice5=", slice5)
 }
