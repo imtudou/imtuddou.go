@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 需要说明，slice 并不是数组或数组指针。它通过内部指针和相关属性引用数组片段，以实现变长方案。
@@ -64,4 +66,27 @@ func main() {
 	copy(slice5, slice4)
 	fmt.Println("slice4=", slice4)
 	fmt.Println("slice5=", slice5)
+
+	fmt.Println("=====================================")
+
+	// string 底层是一个byte 数组，因此string也可以进行切片处理
+
+	str := "zs@163.com"
+	emilsuffix := str[3:] // 使用切片取到163.com
+	fmt.Println("emilsuffix=", emilsuffix)
+
+	// 将zs@163.com 改成"ls@163.com
+	byteArr := []byte(str)
+	byteArr[0] = 'l'
+	byteArr[1] = 's'
+	str = string(byteArr)
+	fmt.Println("sts=", str)
+
+	// "ls@163.com 改成李s@163.com  rune 兼容汉字
+
+	runeArr := []rune(str)
+	runeArr[0] = '李'
+	str = string(runeArr)
+	fmt.Println("sts=", str)
+
 }
