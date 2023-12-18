@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sample/chapter9/model"
 )
 
 func main() {
