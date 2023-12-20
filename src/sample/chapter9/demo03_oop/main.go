@@ -5,6 +5,9 @@ import (
 	account "sample/chapter9/model/account"
 )
 
+/*
+面向对象：封装
+*/
 func main() {
 	// p := person.CreatePerson("toms")
 	// p.SetAge(18)
