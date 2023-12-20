@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"sample/chapter9/model"
+	student "sample/chapter9/model/student"
 )
 
 func main() {
-	stu := model.Student{Name: "tom", Age: 19}
+	stu := student.Student{Name: "tom", Age: 19}
 	fmt.Println(stu)
 
-	stu2 := model.CreateStudent("tom", 19, 11.2, 190.9)
+	stu2 := student.CreateStudent("tom", 19, 11.2, 190.9)
 	fmt.Println(*stu2)
 
 	fmt.Println(stu2.GetHeight())
