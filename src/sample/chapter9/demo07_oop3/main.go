@@ -40,16 +40,30 @@ func (c Camera) Stop() {
 type T interface {
 }
 
+type Computer struct {
+}
+
+func (computer Computer) Working(usb Usb) {
+	usb.Start()
+	usb.Stop()
+}
+
 /*
 面向对象：多态
 1.多态参数
 */
 func main() {
 
-	//	var p Phone // 结构体变量 实现了Usb.Start()
-	var usb Usb = Phone{Name: "小米"}
-	usb.Start()
-	usb.Stop()
+	P := Phone{Name: "小米"}
+	c := Camera{Name: "索尼"}
+	computer := Computer{}
+	computer.Working(P)
+	computer.Working(c)
+
+	// var p2 Phone // 结构体变量 实现了Usb.Start()
+	var usb2 Usb = Phone{Name: "小米"}
+	usb2.Start()
+	usb2.Stop()
 
 	var t1 T = Camera{Name: "索尼"}
 	fmt.Println(t1)
@@ -58,4 +72,5 @@ func main() {
 	var num1 float64 = 8.8
 	t2 = num1
 	fmt.Println(t2)
+
 }

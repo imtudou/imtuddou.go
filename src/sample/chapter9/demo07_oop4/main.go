@@ -22,11 +22,15 @@ type Phone struct {
 
 // 让Phone 实现 Usb接口 方法
 func (p Phone) Start() {
-	fmt.Println("手机开始工作。。。")
+	fmt.Println(p.Name, "手机开始工作。。。")
 }
 
 func (p Phone) Stop() {
-	fmt.Println("手机停止工作。。。")
+	fmt.Println(p.Name, "手机停止工作。。。")
+}
+
+func (p Phone) Call() {
+	fmt.Println(p.Name, "手机开始打电话。。。")
 }
 
 type Camera struct {
@@ -42,6 +46,19 @@ func (c Camera) Stop() {
 	fmt.Println("相机停止工作。。。")
 }
 
+type Computer struct {
+}
+
+func (computer Computer) Working(usb Usb) {
+	usb.Start()
+
+	// 类型断言(类型转换)
+	if p, isok := usb.(Phone); isok {
+		p.Call()
+	}
+	usb.Stop()
+}
+
 /*
 面向对象：多态
 2.多态数组
@@ -54,4 +71,10 @@ func main() {
 	usbArr[1] = Phone{Name: "vivo"}
 	usbArr[2] = Camera{Name: "索尼"}
 	fmt.Println(usbArr)
+
+	var computer Computer
+	for _, v := range usbArr {
+		computer.Working(v)
+
+	}
 }
