@@ -52,7 +52,7 @@ type Computer struct {
 func (computer Computer) Working(usb Usb) {
 	usb.Start()
 
-	// 类型断言(类型转换)
+	// 类型断言(类型转换) usb.(Phone)
 	if p, isok := usb.(Phone); isok {
 		p.Call()
 	}
@@ -75,6 +75,5 @@ func main() {
 	var computer Computer
 	for _, v := range usbArr {
 		computer.Working(v)
-
 	}
 }

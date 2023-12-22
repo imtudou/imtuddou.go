@@ -16,7 +16,7 @@ type Phone struct {
 }
 
 // 让Phone 实现 Usb接口 方法
-func (p Phone) Start() {
+func (p *Phone) Start() {
 	fmt.Println(p.Name, "手机开始工作。。。")
 }
 
@@ -57,11 +57,11 @@ func main() {
 	P := Phone{Name: "小米"}
 	c := Camera{Name: "索尼"}
 	computer := Computer{}
-	computer.Working(P)
+	computer.Working(&P)
 	computer.Working(c)
 
 	// var p2 Phone // 结构体变量 实现了Usb.Start()
-	var usb2 Usb = Phone{Name: "小米"}
+	var usb2 Usb = &Phone{Name: "小米"}
 	usb2.Start()
 	usb2.Stop()
 
