@@ -24,8 +24,8 @@ func main() {
 	fmt.Scanln(&pwd)
 
 	account := account.CreateAccount(no, pwd)
-	if account == nil {
-		fmt.Println("登录失败")
+	if account == nil{
+		fmt.Println("登录失败:",account.Msg)
 	} else {
 		fmt.Println("登录成功")
 	}
@@ -58,11 +58,15 @@ func main() {
 			fmt.Scanln(&newpwd)
 			account.EditPWd(oldpwd, newpwd)
 
-		case 5:
+		default:
+			fmt.Println("选项错误！")
+		}
+
+		if flag == 5 {
 			fmt.Println("退出成功")
 			return
 		}
-
+		
 	}
-
+	 
 }
