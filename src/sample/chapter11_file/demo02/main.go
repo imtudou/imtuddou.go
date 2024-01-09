@@ -42,6 +42,40 @@ func main() {
 // 统计英文，数字，空格，和其他字符数量
 func test8() {
 	filePath := "../../../../doc/222.txt"
+	// 打开文件
+	file, err := os.Open(filePath)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer file.Close()
+
+	var count CharCount
+	// 读取文件内容
+	reader := bufio.NewReader(file)
+	for {
+		str, err := reader.ReadString('\n')
+		if err == io.EOF {
+			// 读到文件末尾
+			break
+		}
+
+		// 遍历str 进行统计
+		for _, v := range str {
+			switch {
+			case v >= 'a' && v <= 'z':
+			case v >= 'A' && v <= 'Z':
+				count.ChCount++
+			case v == ' ' && v == '\n':
+				count.SpaceCount++
+			case v >= '0' && v <= '9':
+				count.NumCount++
+			default:
+				count.OtherCount++
+			}
+		}
+	}
+
+	fmt.Printf("ChCount=%v,NumCount=%v,SpaceCount=%v,OtherCount=%v", count.ChCount, count.NumCount, count.SpaceCount, count.OtherCount)
 
 }
 
