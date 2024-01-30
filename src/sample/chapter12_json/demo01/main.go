@@ -24,10 +24,37 @@ func main() {
 		Skill:    "你叉叉",
 	}
 
+	// 序列化
 	str, err := json.Marshal(&monster)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(string(str))
+	fmt.Printf("序列化 %v\n", string(str))
+
+	// 1.反序列化成 struct
+	//unstr := "{\"monster_name\":\"张三\",\"monster_age\":1111,\"monster_Birthday\":\"2012-22-21\",\"monster_Sal\":850.045,\"monster_Skill\":\"你叉叉\"}"
+	var unmonster Monster
+	un_struct_err := json.Unmarshal([]byte(str), &unmonster)
+	if un_struct_err != nil {
+		fmt.Println(un_struct_err)
+	}
+	fmt.Println(unmonster)
+
+	// 2.反序列化成 map
+	var unmap map[string]interface{}
+	un_map_err := json.Unmarshal([]byte(str), &unmap)
+	if un_map_err != nil {
+		fmt.Println(un_map_err)
+	}
+	fmt.Println(unmap)
+
+	// 3.反序列化成 Slice
+	unslicestr := "[{\"monster_name\":\"张三\",\"monster_age\":1111,\"monster_Birthday\":\"2012-22-21\",\"monster_Sal\":850.045,\"monster_Skill\":\"你叉叉\"}]"
+	var unslice []map[string]interface{}
+	un_slice_err := json.Unmarshal([]byte(unslicestr), &unslice)
+	if un_slice_err != nil {
+		fmt.Println(un_slice_err)
+	}
+	fmt.Println(unslice)
 
 }
