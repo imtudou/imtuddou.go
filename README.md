@@ -32,3 +32,38 @@ Go语言的编码都统一成了utf-8,和其它的编程语言来说。非常的
 > 2. `go mod init` 在当前项目文件下生成 go.mod文件 
 >3. 接着执行`go mod tidy`
 
+
+# chapter14  单元测试
+1. 引入 testing 包
+2. 创建 add.go 代码如下
+ 
+```go
+func main() {
+
+	// 传统的测试方法就是在main函数里面调用一次看看结果是否符合预期
+	res := add(10) // 6
+	if res == 55 {
+		fmt.Printf("符合预期：res = %v\n", res)
+	} else {
+		fmt.Printf("不符合预期：res = %v\n", res)
+	}
+
+}
+
+```
+
+4. 创建 add_test.go 注意:文件名必须以```xxx_test.go``` 结尾，测试方法名字必须以```Test``` 开头，否则执行 ```go test -v``` 会报错```testing: warning: no tests to run```
+```go
+func TestAdd(t *testing.T) {
+
+	// 调用
+	res := add(10)
+	if res != 55 {
+		t.Fatalf("add_test fail")
+	}
+	t.Logf("add_test success")
+}
+```
+参考：
++ https://forum.golangbridge.org/t/go-test-results-in-testing-warning-no-tests-to-run/13446
++ https://go.dev/doc/tutorial/add-a-test

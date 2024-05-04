@@ -2,10 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
+	"strings"
 )
 
-// 特殊序列化可配置tag
+// Monster 特殊序列化可配置tag
 type Monster struct {
 	Name     string  `json:"monster_name"`
 	Age      int     `json:"monster_age"`
@@ -30,4 +32,11 @@ func main() {
 	}
 	fmt.Println(string(str))
 
+	fmt.Println("==================================")
+	// xml 数据格式
+
+	monsterxml := "<Monster><Name>张三</Name><Age>1111</Age><Skill>你叉叉</Skill></Monster>"
+	xmlReder := strings.NewReader(monsterxml)
+	p := xml.NewDecoder(xmlReder)
+	fmt.Printf("p=%v\n", p)
 }
