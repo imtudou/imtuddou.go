@@ -7,6 +7,7 @@ import (
 
 // channel 使用细节和注意事项
 func main() {
+	// test xxx
 	fmt.Println("main---------------------")
 	ch := make(chan int, 20)
 	resultChan := make(chan bool, 5)
