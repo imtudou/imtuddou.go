@@ -2,3 +2,5 @@
 /.vscode
 /bin
 
+/doc/parsed_logs.json
+/doc/log.txt
