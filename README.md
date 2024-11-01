@@ -63,4 +63,4 @@ Go语言的编码都统一成了utf-8,和其它的编程语言来说。非常的
 > PS D:\Y\projects\personal\imtuddou.go\src\sample\chapter_17_redis> go get github.com/go-redis/redis
 
 
-
+4. 测试
