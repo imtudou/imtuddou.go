@@ -43,7 +43,7 @@ Go语言的编码都统一成了utf-8,和其它的编程语言来说。非常的
 > +  LogEntity.go
 > + main.go
 
-2.1 引入第三方uuid包 在文件夹 `chapter11_file/` 执行 `go mod init` 后再执行 `go mod tidy` 生成`go.mod`文件
+2.1 引入第三方uuid包 在文件夹 `chapter11_file/` 执行 `go mod init demo03_LogAnalysis` 后再执行 `go mod tidy` 生成`go.mod`文件
 
 2.2 在执行命令 `go get github.com/google/uuid`
 
@@ -53,5 +53,14 @@ Go语言的编码都统一成了utf-8,和其它的编程语言来说。非常的
 2.4 如果执行报错 undefined
 > Go 中 main 包默认不会加载其他文件， 而其他包都是默认加载的。如果 main 包有多个文件，则在执行的时候需要将其它文件都带上，即执行 go run *.go
 > (可能跟安装的sdk版本不一致有关：1.22.1不会出现这个问题 1.20.5就会有问题)
+
+
+3. 安装 redis 
+> PS D:\Y\projects\personal\imtuddou.go\src\sample\chapter_17_redis> go mod init demo01
+
+> PS D:\Y\projects\personal\imtuddou.go\src\sample\chapter_17_redis> go mod tidy
+
+> PS D:\Y\projects\personal\imtuddou.go\src\sample\chapter_17_redis> go get github.com/go-redis/redis
+
 
 
