@@ -26,7 +26,7 @@ func getSumAndSub(n1 int, n2 int) (sum int, sub int) {
 	return
 }
 
-//5. 可变参数: 编写一个函数sum ，可以求出 1到多个int的和(可变参数需要放到形参后面)
+// 5. 可变参数: 编写一个函数sum ，可以求出 1到多个int的和(可变参数需要放到形参后面)
 func sum(n1 int, args ...int) int {
 	sum := n1
 	for i := 0; i < len(args); i++ {

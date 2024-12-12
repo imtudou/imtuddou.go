@@ -13,7 +13,7 @@ type studentsss struct {
 	height float64
 }
 
-//因为student结构体首字母是小写，因此是只能在model使用//我们通过工厂模式来解决
+// 因为student结构体首字母是小写，因此是只能在model使用//我们通过工厂模式来解决
 func CreateStudent(name string, age int, score float64, h float64) *studentsss {
 	return &studentsss{
 		Name:   name,

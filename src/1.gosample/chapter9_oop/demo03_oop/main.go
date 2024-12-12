@@ -24,8 +24,8 @@ func main() {
 	fmt.Scanln(&pwd)
 
 	account := account.CreateAccount(no, pwd)
-	if account == nil{
-		fmt.Println("登录失败:",account.Msg)
+	if account == nil {
+		fmt.Println("登录失败:", account.Msg)
 	} else {
 		fmt.Println("登录成功")
 	}
@@ -66,7 +66,7 @@ func main() {
 			fmt.Println("退出成功")
 			return
 		}
-		
+
 	}
-	 
+
 }
