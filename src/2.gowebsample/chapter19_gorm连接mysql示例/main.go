@@ -6,8 +6,13 @@ import (
 	"gorm.io/gorm"
 )
 
+/*
+*
+https://gorm.io/zh_CN/docs/index.html
+*/
+
 type Product struct {
-	gorm.Model // 继承基类
+	gorm.Model // 内嵌gorm.Model
 	Code       string
 	Price      uint
 	Stock      uint

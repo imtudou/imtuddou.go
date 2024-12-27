@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #todo-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #todo-list li input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+            padding: 5px;
+            border: none;
+        }
+        #todo-list li button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Todo List</h1>
+<input type="text" id="new-todo" placeholder="Add a new todo...">
+<button onclick="addTodo()">Add</button>
+
+<ul id="todo-list"></ul>
+
+<script>
+    const API_URL = 'http://localhost:9090/api/v1/todo'; // 替换为你的后端服务器URL
+
+    let todoList = [];
+
+    // 渲染Todolist列表
+    function renderTodoList() {
+        const ul = document.getElementById('todo-list');
+        ul.innerHTML = '';
+        todoList.forEach(todo => {
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            span.innerText = todo.text;
+
+            const editButton = document.createElement('button');
+            editButton.innerText = 'Edit';
+            editButton.onclick = () => editTodo(todo.id);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.onclick = () => removeTodo(todo.id);
+
+            li.appendChild(span);
+            li.appendChild(editButton);
+            li.appendChild(deleteButton);
+            ul.appendChild(li);
+        });
+    }
+
+    // 从服务器获取Todolist列表
+    async function fetchTodos() {
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error('Network response was not ok');
+            result = await response.json();
+            if (result.code == 200 && result.data != null){
+                result.data.forEach(item =>{
+                    let cc ={id : item.ID,text :item.Title}
+                    todoList.push(cc);
+
+                })
+
+                renderTodoList();
+            }
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    }
+
+    // 添加Todolist项到服务器
+    async function addTodo() {
+        const newTodoText = document.getElementById('new-todo').value.trim();
+        if (newTodoText) {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ Title: newTodoText ,})
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const newTodo = await response.json();
+                if (newTodo.code == 200 && newTodo.data != null) {
+                    document.getElementById('new-todo').value = '';
+                    todoList = [];
+                    await fetchTodos();
+                }
+
+            } catch (error) {
+                console.error('There was a problem with the addTodo operation:', error);
+            }
+        }
+    }
+
+    // 删除Todolist项
+    async function removeTodo(id) {
+        try {
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+            todoList = todoList.filter(todo => todo.id !== id);
+            renderTodoList();
+        } catch (error) {
+            console.error('There was a problem with the removeTodo operation:', error);
+        }
+    }
+
+    // 更新Todolist项（这里需要实现一个编辑界面，然后发送PUT请求）
+    async function editTodo(id) {
+        // 弹出一个输入框让用户编辑，这里用prompt作为示例
+        const newText = prompt('请输入:',todoList.find(s=>s.id == id).text);
+        if (newText) {
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ Title: newText })
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const updatedTodo = await response.json();
+                if (updatedTodo.code == 200 && updatedTodo.data != null) {
+                    todoList = [];
+                   await fetchTodos();
+                }
+            } catch (error) {
+                console.error('There was a problem with the editTodo operation:', error);
+            }
+        }
+    }
+
+    // 页面加载时获取TodoList列表
+    window.onload = fetchTodos;
+</script>
+
+</body>
+</html>
